@@ -1,0 +1,26 @@
+--- a/components/QuestionUploader.jsx
++++ b/components/QuestionUploader.jsx
+@@ -1,10 +1,11 @@
+-import React from 'react'
++import React, { useState } from 'react'
++import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
++import { SortableContext, sortableKeyboardCoordinates, arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable'
+ import { useSortable } from '@dnd-kit/sortable'
+ import { CSS } from '@dnd-kit/utilities'
+ 
+-function QuestionCard({ question, index }) {
+-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: question.id })
++function QuestionCard({ question, index, id }) {
++  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: id })
+ 
+   const style = {
+     transform: CSS.Translate.toString(transform),
+@@ -15,7 +16,7 @@
+   }
+ 
+   return (
+-    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="relative flex flex-col gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-200">
++    <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="relative flex flex-col gap-3 p-3 bg-white rounded-lg shadow-sm border border-gray-200 mb-4">
+       <div className="flex items-start gap-3">
+         {/* Soru Numarası */}
+         <div className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold shrink-0">
